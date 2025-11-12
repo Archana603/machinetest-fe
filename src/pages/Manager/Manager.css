@@ -1,0 +1,66 @@
+.page-container {
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+.table-container {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.styled-table th {
+  background-color: #4f46e5;
+  color: #fff;
+}
+
+.approve-btn,
+.reject-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 8px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.approve-btn {
+  background-color: #22c55e;
+}
+
+.reject-btn {
+  background-color: #ef4444;
+}
+
+.approve-btn:hover {
+  background-color: #16a34a;
+}
+
+.reject-btn:hover {
+  background-color: #dc2626;
+}
+
+.empty-text {
+  color: #555;
+  font-style: italic;
+  margin-top: 20px;
+}
