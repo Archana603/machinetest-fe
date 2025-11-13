@@ -49,11 +49,7 @@ export default function EmployeeDashboard(){
     <DashboardLayout role="Employee">
     <div style={{ padding: 20 }}>
       <h2>Welcome, {user?.name}</h2>
-      <div style={{ margin: '10px 0' }}>
-        <button onClick={clockIn}>Clock In</button>
-        <button onClick={clockOut}>Clock Out</button>
-        <div style={{ color: 'green' }}>{message}</div>
-      </div>
+     
 
       <section>
         <h3>Timesheets</h3>

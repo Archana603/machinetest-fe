@@ -13,9 +13,7 @@ export default function Navbar({ role }) {
   return (
     <nav className="navbar">
       <h2 className="navbar-title">{role} Dashboard</h2>
-      <button className="logout-btn" onClick={handleLogout}>
-        Logout
-      </button>
+      
     </nav>
   );
 }

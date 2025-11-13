@@ -11,10 +11,15 @@ export default function Attendance() {
   const [isClockedIn, setIsClockedIn] = useState(false);
 
   const fetchData = async () => {
-    const res = await axios.get("/api/timesheets/me");
-    setTimesheets(res.data);
-    const latest = res.data[res.data.length - 1];
-    setIsClockedIn(latest && !latest.clockOut);
+    try {
+      const res = await axios.get("/api/timesheets/me");
+      setTimesheets(res.data);
+
+      const latest = res.data[res.data.length - 1];
+      setIsClockedIn(latest && !latest.clockOut);
+    } catch (error) {
+      console.error("Error fetching timesheets:", error);
+    }
   };
 
   useEffect(() => {
@@ -24,12 +29,18 @@ export default function Attendance() {
   const toggleClock = async () => {
     try {
       if (!isClockedIn) {
+        // 🕒 Clock In
         await axios.post("/api/timesheets/clockin");
+        setIsClockedIn(true); // ✅ Immediately reflect on UI
         setMessage("✅ Clocked In successfully");
       } else {
+        // ⏰ Clock Out
         await axios.post("/api/timesheets/clockout");
+        setIsClockedIn(false); // ✅ Immediately reflect on UI
         setMessage("⏰ Clocked Out successfully");
       }
+
+      // Refresh timesheet data
       fetchData();
     } catch (e) {
       setMessage(e.response?.data?.message || "Error occurred");
@@ -64,15 +75,23 @@ export default function Attendance() {
               </tr>
             </thead>
             <tbody>
-              {timesheets.map((ts) => (
+              {/* {timesheets.map((ts) => (
                 <tr key={ts._id}>
                   <td>{ts.date}</td>
-                  <td>{ts.clockIn ? new Date(ts.clockIn).toLocaleTimeString() : "-"}</td>
-                  <td>{ts.clockOut ? new Date(ts.clockOut).toLocaleTimeString() : "-"}</td>
+                  <td>
+                    {ts.clockIn
+                      ? new Date(ts.clockIn).toLocaleTimeString()
+                      : "-"}
+                  </td>
+                  <td>
+                    {ts.clockOut
+                      ? new Date(ts.clockOut).toLocaleTimeString()
+                      : "-"}
+                  </td>
                   <td>{ts.durationHours || "-"}</td>
                   <td>{ts.approved ? "✔️" : "❌"}</td>
                 </tr>
-              ))}
+              ))} */}
             </tbody>
           </table>
         </div>

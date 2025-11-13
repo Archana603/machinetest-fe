@@ -8,10 +8,16 @@ export default function HREmployees() {
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState({ name: "", email: "", role: "Employee", wage: "" });
 
-  const fetchEmployees = async () => {
+ const fetchEmployees = async () => {
+  try {
     const res = await axios.get("/api/hr/employees");
-    setEmployees(res.data);
-  };
+    setEmployees(res.data.employees || []);
+  } catch (error) {
+    console.error("Error fetching employees:", error);
+    setEmployees([]); // fallback to empty array
+  }
+};
+
 
   useEffect(() => { fetchEmployees(); }, []);
 
@@ -60,16 +66,16 @@ export default function HREmployees() {
           <table className="styled-table">
             <thead>
               <tr>
-                <th>Name</th><th>Email</th><th>Role</th><th>Wage</th><th>Actions</th>
+                <th>Email</th><th>Role</th><th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {employees.map((e) => (
                 <tr key={e._id}>
-                  <td>{e.name}</td>
+                
                   <td>{e.email}</td>
                   <td>{e.role}</td>
-                  <td>{e.wage}</td>
+                 
                   <td>
                     <button onClick={() => handleEdit(e)} className="edit-btn">Edit</button>
                     <button onClick={() => handleDelete(e._id)} className="delete-btn">Delete</button>

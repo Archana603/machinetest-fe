@@ -10,6 +10,7 @@ import {
   FaCalendarAlt,
   FaCheckCircle,
   FaSignOutAlt,
+  FaFileAlt 
 } from "react-icons/fa";
 
 export default function Sidebar({ role }) {
@@ -24,6 +25,7 @@ export default function Sidebar({ role }) {
    HR: [
   { name: "Employee Management", path: "/hr/employees", icon: <FaUsers /> },
   { name: "Payroll Processing", path: "/hr/payroll", icon: <FaChartBar /> },
+{ name: "Reports", path: "/hr/reports", icon: <FaFileAlt /> },
   { name: "Logout", path: "/login", icon: <FaSignOutAlt /> },
 ],
 

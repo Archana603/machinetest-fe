@@ -12,6 +12,7 @@ import ManagerTimesheets from './pages/Manager/ManagerTimesheets.jsx';
 import ManagerSchedules from './pages/Manager/ManagerSchedules.jsx';
 import HRPayroll from './pages/hr/HRPayroll.jsx';
 import HREmployees from './pages/hr/HREmployees.jsx';
+import HRReports from './pages/HRReports/HRReports.jsx';
 
 // ✅ PrivateRoute wrapper for authentication + role checking
 function PrivateRoute({ children, roles }) {
@@ -33,6 +34,7 @@ export default function App() {
     <AuthProvider>
       <Routes>
         {/* 🔐 Public Routes */}
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
@@ -101,6 +103,7 @@ export default function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/hr/reports" element={<HRReports />} />
       </Routes>
     </AuthProvider>
   );
